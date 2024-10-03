@@ -27,7 +27,11 @@ char *abbreviate(const char *phrase) {
     acr[0] = phrase[0];
     acr[1] = '\0';
     for (int i = 0; i < len; i++) {
-        if (phrase[i] == ' ' || phrase[i] == '-') {
+        if (phrase[i] == ' ' || phrase[i] == '-' || phrase[i] == '_') {
+            // NOTE: refer to ascii
+            if (phrase[i + 1] < 65 || (phrase[i + 1] > 90 && phrase[i+1] < 97) || phrase[i+1] > 122) {
+                continue;
+            }
             int c_len = strlen(acr);
             if (islower(phrase[i + 1])) {
                 acr[c_len] = phrase[i + 1] - 32;
@@ -42,15 +46,17 @@ char *abbreviate(const char *phrase) {
 }
 
 // int main(void) {
-    // char a[] = "Hello World!";
-    // char b[] = "As Soon As Possible";
-    // char c[] = "Liquid-crystal display";
-    // char d[] = "Thank George It's Friday!";
-    //
-    // char *r = abbreviate(a);
-    // if (strcmp(" ", " ") == 0) {
-    //     printf("WOHAAA");
-    // }
-    // printf("%s\n", r);
-    // return 0;
+//     char a[] = "Hello World!";
+//     char b[] = "As Soon As Possible";
+//     char c[] = "Liquid-crystal display";
+//     char d[] = "Thank George It's Friday!";
+//     char e[] = "Something - I made up from thin air";
+//     char f[] = "The Road _Not_ Taken";
+//
+//     char *r = abbreviate(f);
+//     if (strcmp(" ", " ") == 0) {
+//         printf("WOHAAA\n");
+//     }
+//     printf("%s\n", r);
+//     return 0;
 // }
