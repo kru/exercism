@@ -1,0 +1,7 @@
+bin/configlet
+bin/configlet.exe
+build/
+**/*.out
+**/*.o
+**/*.dSYM
+.DS_Store
